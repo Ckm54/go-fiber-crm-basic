@@ -31,7 +31,14 @@ func getLead(c *fiber.Ctx){
 }
 
 func NewLead(c *fiber.Ctx){
-
+	db := database.DBConn
+	lead := new(Lead)
+	if err := c.BodyParser(lead); err != nil {
+		c.Status(503).Send(err)
+		return
+	}
+	db.Create(&lead)
+	c.JSON(lead)
 }
 
 func DeleteLead(c *fiber.Ctx){
