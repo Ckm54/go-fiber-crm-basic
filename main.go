@@ -7,6 +7,7 @@ import (
 	"github.com/ckm54/go-fiber-crm-basic/lead"
 	"github.com/gofiber/fiber"
 	"github.com/jinzhu/gorm"
+	// "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 func setupRoutes(app *fiber.App){
@@ -23,7 +24,7 @@ func initDatabase(){
 		panic("failed to connect to database")
 	}
 	fmt.Println("Connection opened to database")
-	database.DBConn.AutoMigrate((&lead.Lead{}))
+	database.DBConn.AutoMigrate(&lead.Lead{})
 	fmt.Println("Database migrated")
 }
 

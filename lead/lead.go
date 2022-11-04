@@ -3,7 +3,7 @@ package lead
 import (
 	"github.com/ckm54/go-fiber-crm-basic/database"
 	"github.com/jinzhu/gorm"
-	"github.com/jinzhu/gorm/dialects/sqlite"
+	// "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/gofiber/fiber"
 )
 
@@ -22,7 +22,7 @@ func GetLeads(c *fiber.Ctx){
 	c.JSON(leads)
 }
 
-func getLead(c *fiber.Ctx){
+func GetLead(c *fiber.Ctx){
 	id := c.Params("id")
 	db := database.DBConn
 	var lead Lead
