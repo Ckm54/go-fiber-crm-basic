@@ -42,5 +42,14 @@ func NewLead(c *fiber.Ctx){
 }
 
 func DeleteLead(c *fiber.Ctx){
-
+	id := c.Params("id")
+	db := database.DBConn
+	var lead Lead
+	db.First(&lead, id)
+	if lead.Name == ""{
+		c.Status(500).Send("No lead found with id")
+		return
+	}
+	db.Delete(&lead)
+	c.Send("Lead successfully deleted")
 }
